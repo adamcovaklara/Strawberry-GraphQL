@@ -1,0 +1,87 @@
+query planets{
+  planets {
+    name
+    neighbours
+    __typename
+  }
+}
+
+query first{
+  firstPlanet{
+    name
+    neighbours
+  }
+}
+
+query last{
+  lastPlanet{
+    name
+    neighbours
+  }
+}
+
+query planet{
+  planet(name: "Earth"){
+    name
+    neighbours
+  }
+}
+
+query planetVar($name: String = "Earth"){
+  planet(name: $name){
+    name
+    neighbours
+  }
+}
+
+query passerby{
+  passerby{
+    name
+    ... on Moon{
+      orbitalPeriod
+      diameter
+    }
+    ... on Asteroid{
+      size
+      speed
+    }
+  } 
+}
+
+query comet{
+  comet{
+    ... on Periodic {
+      orbitalPeriod
+    }
+    ... on NonPeriodic {
+      inclination
+    }
+    ... on NoOrbit {
+      perihelionDistance
+    }
+    ... on Lost{
+      discoveryDate
+    }
+  }
+}
+
+mutation create{
+  createPlanet(planet: {name: "Pluto", neighbours: ["Neptune"]}){
+    name
+    neighbours
+  }
+}
+
+mutation delete{
+  deletePlanet(planet: {name: "Pluto", neighbours: ["Neptune", "MakeMake"]}){
+    name
+    neighbours
+  }
+}
+
+mutation edit{
+  editNeighbours(planet: {name: "Pluto", neighbours: ["Neptune", "MakeMake"]}){
+    name
+    neighbours
+  }
+}
