@@ -79,12 +79,6 @@ all_planets = [
 def get_planets():
     return all_planets
 
-def get_planet(name, neighbours):
-    return Planet(
-            name=name,
-            neighbours=neighbours,
-        )
-
 def get_passerby() -> Passerby:
     list = [1, 2, 3, 4, 5, 6]
     if random.choice(list) % 2 != 0:
@@ -123,6 +117,7 @@ class Query:
         for item in all_planets:
             if item.name == name:
                 return item
+        return ValueError("not found")
 
 @strawberry.input
 class PlanetInput:
@@ -133,12 +128,12 @@ class PlanetInput:
 class Mutation:
     @strawberry.mutation
     def create_planet(self, planet: PlanetInput) -> Planet:
-        all_planets.append(get_planet(planet.name, planet.neighbours))
-        return get_planet(planet.name, planet.neighbours)
+        all_planets.append(planet)
+        return planet
         
     @strawberry.mutation
     def delete_planet(self, planet: PlanetInput) -> typing.List[Planet]:
-        all_planets.remove(get_planet(planet.name, planet.neighbours))
+        all_planets.remove(planet)
         return all_planets
     
     @strawberry.mutation

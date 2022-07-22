@@ -27,6 +27,13 @@ query planet{
   }
 }
 
+query planet_error{
+  planet(name: "MakeMake"){
+    name
+    neighbours
+  }
+}
+
 query planetVar($name: String = "Earth"){
   planet(name: $name){
     name

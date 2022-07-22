@@ -1,0 +1,41 @@
+query get_default_planet{
+  getDefaultPlanet {
+		name
+    neighbours
+  }
+}
+
+query get_default_planets{
+  getDefaultPlanets {
+		name
+    neighbours
+  }
+}
+
+query get_many_planets{
+  getManyPlanets {
+		name
+    neighbours
+  }
+}
+
+query get_planet_valid{
+  getPlanet(id: 8) {
+		name
+    neighbours
+  }
+}
+
+query get_planet_invalid{
+  getPlanet(id: 9) {
+		name
+    neighbours
+  }
+}
+
+query get_planets{
+  getPlanets(ids: [4,5,6,7]) {
+		name
+    neighbours
+  }
+}

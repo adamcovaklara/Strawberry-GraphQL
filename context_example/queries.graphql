@@ -1,0 +1,17 @@
+query get_users{
+  first: getUser(id: 1) {
+    id
+  }
+  second: getUser(id: 2) {
+    id
+  }
+  third: getUser(id: 3) {
+    id
+  }
+}
+
+query get_user{
+  getUser(id: 1) {
+    id
+  }
+}
